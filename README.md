@@ -1,3 +1,5 @@
+[English](README.en.md) | 中文
+
 # meta-alientek
 
 正点原子 **i.MX6U-MINI (i.MX6ULL)** 开发板的 Yocto 板级支持层 (BSP layer)。
