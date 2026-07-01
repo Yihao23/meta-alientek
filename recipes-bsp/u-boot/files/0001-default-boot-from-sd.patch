@@ -1,0 +1,40 @@
+From 4eba1510351ea120d51e598a56237d943904d0b1 Mon Sep 17 00:00:00 2001
+From: puer <puer@local>
+Date: Wed, 1 Jul 2026 18:34:30 +0000
+Subject: [PATCH] mx6ullevk: default boot from SD (mmc0) for Alientek i.MX6ULL
+ MINI
+
+Boot our Yocto image from the SD card, not the EVK default eMMC.
+Set mmcdev=0, mmcroot=/dev/mmcblk0p2, fdt_file=imx6ull-alientek.dtb.
+
+Upstream-Status: Inappropriate [board-specific configuration]
+Signed-off-by: puer <puer@local>
+---
+ include/configs/mx6ullevk.h | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
+
+diff --git a/include/configs/mx6ullevk.h b/include/configs/mx6ullevk.h
+index 00cc547b90..e802451e07 100644
+--- a/include/configs/mx6ullevk.h
++++ b/include/configs/mx6ullevk.h
+@@ -30,14 +30,14 @@
+ 	"console=ttymxc0\0" \
+ 	"fdt_high=0xffffffff\0" \
+ 	"initrd_high=0xffffffff\0" \
+-	"fdt_file=undefined\0" \
++	"fdt_file=imx6ull-alientek.dtb\0" \
+ 	"fdt_addr=0x83000000\0" \
+ 	"boot_fdt=try\0" \
+ 	"ip_dyn=yes\0" \
+ 	"videomode=video=ctfb:x:480,y:272,depth:24,pclk:108695,le:8,ri:4,up:2,lo:4,hs:41,vs:10,sync:0,vmode:0\0" \
+-	"mmcdev="__stringify(CONFIG_SYS_MMC_ENV_DEV)"\0" \
++	"mmcdev=0\0" \
+ 	"mmcpart=1\0" \
+-	"mmcroot=/dev/mmcblk1p2 rootwait rw\0" \
++	"mmcroot=/dev/mmcblk0p2 rootwait rw\0" \
+ 	"mmcautodetect=yes\0" \
+ 	"mmcargs=setenv bootargs console=${console},${baudrate} " \
+ 		"root=${mmcroot}\0" \
+-- 
+2.34.1
+
